@@ -1,0 +1,96 @@
+/* ==========================================================================
+   OnyxCode — Design Tokens
+   Semantic tokens for light/dark. Components only use these variables.
+   ========================================================================== */
+
+:root {
+  /* Brand */
+  --brand: #7c5cff;
+  --brand-hover: #6a48f0;
+  --brand-soft: rgba(124, 92, 255, 0.14);
+  --brand-contrast: #ffffff;
+
+  /* Status */
+  --success: #3fb950;
+  --warning: #d29922;
+  --danger: #f85149;
+
+  /* Typography */
+  --font-sans: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, -apple-system,
+    'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace,
+    SFMono-Regular, Menlo, Monaco, 'Cascadia Code', 'Roboto Mono', monospace;
+
+  /* Fluid type scale */
+  --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --step-1: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  --step-2: clamp(1.56rem, 1.35rem + 1vw, 2.25rem);
+  --step-3: clamp(1.95rem, 1.5rem + 2.2vw, 3.25rem);
+  --step-4: clamp(2.44rem, 1.5rem + 4vw, 4.25rem);
+
+  /* Spacing (4px base) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 999px;
+
+  /* Layout */
+  --container: 1120px;
+  --nav-height: 64px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration: 220ms;
+
+  /* Elevation */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.12);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.16);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.28);
+}
+
+/* Dark theme (default) */
+:root,
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0b0b0d;
+  --bg-elev: #101013;
+  --surface: #17171b;
+  --surface-2: #1e1e23;
+  --border: #26262c;
+  --border-strong: #34343b;
+  --text: #ededf0;
+  --text-muted: #9a9aa2;
+  --text-faint: #6c6c74;
+}
+
+/* Light theme */
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: #ffffff;
+  --bg-elev: #fbfbfc;
+  --surface: #f4f4f6;
+  --surface-2: #ebebef;
+  --border: #e4e4e9;
+  --border-strong: #d2d2d9;
+  --text: #141417;
+  --text-muted: #63636b;
+  --text-faint: #8a8a92;
+
+  --shadow-sm: 0 1px 2px rgba(16, 16, 20, 0.06);
+  --shadow-md: 0 8px 24px rgba(16, 16, 20, 0.08);
+  --shadow-lg: 0 24px 60px rgba(16, 16, 20, 0.12);
+}

@@ -1,0 +1,84 @@
+---
+import Icon from './Icon.astro';
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const services = [
+  { icon: 'app' as const, title: t('services.1.title'), desc: t('services.1.desc') },
+  {
+    icon: 'consult' as const,
+    title: t('services.2.title'),
+    desc: t('services.2.desc'),
+  },
+  {
+    icon: 'automation' as const,
+    title: t('services.3.title'),
+    desc: t('services.3.desc'),
+  },
+];
+---
+
+<section class="section section--tint" id="servicios">
+  <div class="container">
+    <div class="section__head">
+      <span class="eyebrow">{t('services.eyebrow')}</span>
+      <h2 class="section__title">{t('services.title')}</h2>
+      <p class="section__subtitle">{t('services.subtitle')}</p>
+    </div>
+
+    <div class="grid grid--3">
+      {
+        services.map((s) => (
+          <article class="card service">
+            <span class="service__icon">
+              <Icon name={s.icon} size={24} />
+            </span>
+            <h3 class="service__title">{s.title}</h3>
+            <p class="service__desc">{s.desc}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .service {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    transition: border-color var(--duration) var(--ease),
+      transform var(--duration) var(--ease);
+  }
+
+  .service:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--brand) 45%, var(--border));
+  }
+
+  .service__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    margin-bottom: var(--space-2);
+    color: var(--brand);
+    background-color: var(--brand-soft);
+    border-radius: var(--radius-md);
+  }
+
+  .service__title {
+    font-size: var(--step-1);
+  }
+
+  .service__desc {
+    color: var(--text-muted);
+    font-size: var(--step-0);
+  }
+</style>

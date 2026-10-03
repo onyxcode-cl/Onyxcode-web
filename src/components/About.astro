@@ -1,0 +1,105 @@
+---
+import Icon from './Icon.astro';
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const points = [
+  { title: t('about.1.title'), desc: t('about.1.desc') },
+  { title: t('about.2.title'), desc: t('about.2.desc') },
+  { title: t('about.3.title'), desc: t('about.3.desc') },
+];
+---
+
+<section class="section" id="nosotros">
+  <div class="container about">
+    <div class="about__copy">
+      <span class="eyebrow">{t('about.eyebrow')}</span>
+      <h2 class="section__title">{t('about.title')}</h2>
+      <p class="about__text">{t('about.p1')}</p>
+      <p class="about__text">{t('about.p2')}</p>
+    </div>
+
+    <ul class="about__points">
+      {
+        points.map((point) => (
+          <li class="about__point">
+            <span class="about__check">
+              <Icon name="check" size={18} />
+            </span>
+            <div>
+              <h3 class="about__point-title">{point.title}</h3>
+              <p class="about__point-desc">{point.desc}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .about {
+    display: grid;
+    gap: var(--space-8);
+    align-items: start;
+  }
+
+  .about__text {
+    margin-top: var(--space-4);
+    max-width: 56ch;
+    color: var(--text-muted);
+    font-size: var(--step-0);
+  }
+
+  .about__points {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-2);
+    margin: 0;
+    list-style: none;
+  }
+
+  .about__point {
+    display: flex;
+    gap: var(--space-4);
+    padding: var(--space-5);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background-color: var(--surface);
+  }
+
+  .about__check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: 32px;
+    height: 32px;
+    color: var(--brand);
+    background-color: var(--brand-soft);
+    border-radius: var(--radius-full);
+  }
+
+  .about__point-title {
+    font-size: var(--step-0);
+  }
+
+  .about__point-desc {
+    margin-top: var(--space-1);
+    color: var(--text-muted);
+    font-size: var(--step--1);
+  }
+
+  @media (min-width: 960px) {
+    .about {
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--space-9);
+    }
+  }
+</style>

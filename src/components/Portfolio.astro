@@ -1,0 +1,76 @@
+---
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const items = [
+  { title: t('portfolio.1.title'), desc: t('portfolio.1.desc') },
+  { title: t('portfolio.2.title'), desc: t('portfolio.2.desc') },
+  { title: t('portfolio.3.title'), desc: t('portfolio.3.desc') },
+];
+---
+
+<section class="section section--tint" id="portafolio">
+  <div class="container">
+    <div class="section__head">
+      <span class="eyebrow">{t('portfolio.eyebrow')}</span>
+      <h2 class="section__title">{t('portfolio.title')}</h2>
+      <p class="section__subtitle">{t('portfolio.subtitle')}</p>
+    </div>
+
+    <div class="grid grid--3">
+      {
+        items.map((item, i) => (
+          <article class="card work">
+            <span class="work__index">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="work__title">{item.title}</h3>
+            <p class="work__desc">{item.desc}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <p class="work__note">{t('portfolio.note')}</p>
+  </div>
+</section>
+
+<style>
+  .work {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    background-color: var(--bg);
+    border-color: var(--border);
+  }
+
+  .work__index {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--text-faint);
+  }
+
+  .work__title {
+    font-size: var(--step-1);
+  }
+
+  .work__desc {
+    color: var(--text-muted);
+    font-size: var(--step-0);
+  }
+
+  .work__note {
+    margin-top: var(--space-6);
+    padding: var(--space-4) var(--space-5);
+    font-size: var(--step--1);
+    color: var(--text-muted);
+    border-left: 3px solid var(--brand);
+    background-color: var(--bg);
+    border-radius: var(--radius-sm);
+  }
+</style>

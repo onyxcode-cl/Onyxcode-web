@@ -1,0 +1,123 @@
+---
+import Logo from './Logo.astro';
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+import { site } from '../config';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const mailto = `mailto:${site.email}`;
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <a class="footer__logo" href={`/${lang}/`}>
+        <Logo size={24} />
+        <span>{site.name}</span>
+      </a>
+      <p class="footer__tagline">{t('footer.tagline')}</p>
+    </div>
+
+    <nav class="footer__nav" aria-label="Footer">
+      <div class="footer__col">
+        <h2>{t('footer.services')}</h2>
+        <a href="#servicios">{t('services.1.title')}</a>
+        <a href="#servicios">{t('services.2.title')}</a>
+        <a href="#servicios">{t('services.3.title')}</a>
+      </div>
+      <div class="footer__col">
+        <h2>{t('footer.company')}</h2>
+        <a href="#nosotros">{t('nav.about')}</a>
+        <a href="#portafolio">{t('nav.portfolio')}</a>
+      </div>
+      <div class="footer__col">
+        <h2>{t('footer.contact')}</h2>
+        <a href={mailto}>{site.email}</a>
+        <a href={site.whatsapp} target="_blank" rel="noopener noreferrer">
+          WhatsApp
+        </a>
+      </div>
+    </nav>
+  </div>
+
+  <div class="container footer__bottom">
+    <p>© {year} {site.name}. {t('footer.rights')}</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    margin-top: var(--space-9);
+    border-top: 1px solid var(--border);
+    background-color: var(--bg-elev);
+  }
+
+  .footer__inner {
+    display: grid;
+    gap: var(--space-7);
+    padding-block: var(--space-8);
+  }
+
+  .footer__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-weight: 700;
+  }
+
+  .footer__tagline {
+    margin-top: var(--space-3);
+    max-width: 34ch;
+    color: var(--text-muted);
+    font-size: var(--step--1);
+  }
+
+  .footer__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-7) var(--space-9);
+  }
+
+  .footer__col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    font-size: var(--step--1);
+  }
+
+  .footer__col h2 {
+    font-size: var(--step--1);
+    font-weight: 600;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .footer__col a {
+    color: var(--text-muted);
+    transition: color var(--duration) var(--ease);
+  }
+
+  .footer__col a:hover {
+    color: var(--text);
+  }
+
+  .footer__bottom {
+    padding-block: var(--space-5);
+    border-top: 1px solid var(--border);
+    font-size: var(--step--1);
+    color: var(--text-faint);
+  }
+
+  @media (min-width: 768px) {
+    .footer__inner {
+      grid-template-columns: 1.2fr 1.8fr;
+      align-items: start;
+    }
+  }
+</style>

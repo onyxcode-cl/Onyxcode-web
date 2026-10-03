@@ -1,0 +1,49 @@
+---
+import { languages, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  label: string;
+  class?: string;
+}
+const { lang, label, class: className } = Astro.props;
+const other = (Object.keys(languages) as Lang[]).find((c) => c !== lang)!;
+const path = Astro.url.pathname.replace(/^\/(en|es)/, `/${other}`) || `/${other}/`;
+---
+
+<a
+  class:list={['lang-switch', className]}
+  href={path}
+  hreflang={other}
+  aria-label={label}
+  title={languages[other]}
+>
+  {lang.toUpperCase()}
+</a>
+
+<style>
+  .lang-switch {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 38px;
+    padding-inline: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border-radius: var(--radius-md);
+    color: var(--text-muted);
+    border: 1px solid transparent;
+    transition: color var(--duration) var(--ease),
+      background-color var(--duration) var(--ease),
+      border-color var(--duration) var(--ease);
+  }
+
+  .lang-switch:hover {
+    color: var(--text);
+    background-color: var(--surface);
+    border-color: var(--border);
+  }
+</style>

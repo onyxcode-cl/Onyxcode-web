@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Hero from '../../components/Hero.astro';
+import Stack from '../../components/Stack.astro';
+import Services from '../../components/Services.astro';
+import Process from '../../components/Process.astro';
+import Portfolio from '../../components/Portfolio.astro';
+import About from '../../components/About.astro';
+import Contact from '../../components/Contact.astro';
+import Footer from '../../components/Footer.astro';
+import { ui, type Lang } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  return (Object.keys(ui) as Lang[]).map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+
+const meta: Record<Lang, { title: string; description: string }> = {
+  en: {
+    title: 'OnyxCode — Custom software, consulting and automation',
+    description:
+      'We build custom applications, guide your technology decisions and automate manual processes. A close technology services team that speaks plainly.',
+  },
+  es: {
+    title: 'OnyxCode — Software a medida, consultoría y automatización',
+    description:
+      'Creamos aplicaciones a medida, te guiamos en las decisiones tecnológicas y automatizamos procesos manuales. Un equipo de tecnología cercano y sin jerga.',
+  },
+};
+
+const { title, description } = meta[lang];
+---
+
+<BaseLayout lang={lang} title={title} description={description}>
+  <Navbar lang={lang} />
+  <main>
+    <Hero lang={lang} />
+    <Stack lang={lang} />
+    <Services lang={lang} />
+    <Process lang={lang} />
+    <Portfolio lang={lang} />
+    <About lang={lang} />
+    <Contact lang={lang} />
+  </main>
+  <Footer lang={lang} />
+</BaseLayout>
